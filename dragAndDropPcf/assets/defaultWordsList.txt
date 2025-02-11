@@ -1,0 +1,12 @@
+
+[
+    ["pomme", "apple"],
+    ["chien", "dog"],
+    ["maison", "house"],
+    ["école", "school"],
+    ["voiture", "car"],
+    ["livre", "book"],
+    ["soleil", "sun"],
+    ["ordinateur", "computer"],
+    ["fleur", "flower"]
+]
