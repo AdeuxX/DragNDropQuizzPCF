@@ -11,9 +11,10 @@ interface StaticThreadElementProps {
   wordInit: string;
   wordFinal: string;
   rightAnswer: boolean;
+  EnableFinalCheck: boolean;
 }
 
-export function StaticThreadElement({ wordInit, wordFinal, rightAnswer }: StaticThreadElementProps) {
+export function StaticThreadElement({ wordInit, wordFinal, rightAnswer, EnableFinalCheck }: StaticThreadElementProps) {
   const wordInitRef = React.useRef<HTMLElement | null>(null);
   const wordFinalRef = React.useRef<HTMLElement | null>(null);
   const [coords, setCoords] = React.useState({ xinit: 0, yinit: 0, xfinal: 0, yfinal: 0 });
@@ -87,7 +88,7 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer }: Static
         y1={coords.yinit}
         x2={coords.xfinal}
         y2={coords.yfinal}
-        stroke={rightAnswer ? "green" : "red"}
+        stroke={EnableFinalCheck ? "black" : rightAnswer ? "green" : "red"}
         strokeWidth={2}
       />
   );
