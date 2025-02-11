@@ -54,12 +54,21 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer, EnableFi
       const initCoords = getOffsetRelativeToAncestor(initElem);
       const finalCoords = getOffsetRelativeToAncestor(finalElem);
 
+      // const newCoords = {
+      //   xinit: initCoords.x + initElem.offsetWidth / 2 + window.scrollX,
+      //   yinit: initCoords.y + initElem.offsetHeight / 2 + window.scrollY, 
+      //   xfinal: finalCoords.x + finalElem.offsetWidth / 2 + window.scrollX,
+      //   yfinal: finalCoords.y + finalElem.offsetHeight / 2 + window.scrollX,
+      // };
+      //TODO: UNCOMMENT THIS WHEN YOU ARE TESTING OUT POWER APPS
+      const rectInit = initElem.getBoundingClientRect();
+      const rectFinal = finalElem.getBoundingClientRect();
       const newCoords = {
-        xinit: initCoords.x + initElem.offsetWidth / 2 + window.scrollX,
-        yinit: initCoords.y + initElem.offsetHeight / 2 + window.scrollY, 
-        xfinal: finalCoords.x + finalElem.offsetWidth / 2 + window.scrollX,
-        yfinal: finalCoords.y + finalElem.offsetHeight / 2 + window.scrollX,
-      };
+          xinit: rectInit.left + rectInit.width / 2 + window.scrollX,
+          yinit: rectInit.top + rectInit.height / 2 + window.scrollY,
+          xfinal: rectFinal.left + rectFinal.width / 2 + window.scrollX,
+          yfinal: rectFinal.top + rectFinal.height / 2 + window.scrollY,
+        };
 
       setCoords((prevCoords) =>
         JSON.stringify(prevCoords) !== JSON.stringify(newCoords) ? newCoords : prevCoords
@@ -88,8 +97,10 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer, EnableFi
         y1={coords.yinit}
         x2={coords.xfinal}
         y2={coords.yfinal}
-        stroke={EnableFinalCheck ? "black" : rightAnswer ? "green" : "red"}
-        strokeWidth={2}
+        stroke={EnableFinalCheck ? "black" : rightAnswer ? "#4CAF50" : "#F44336"}
+        strokeWidth={3}
+        strokeLinecap="round"
+        style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
       />
   );
 }
