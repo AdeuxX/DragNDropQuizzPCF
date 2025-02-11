@@ -137,9 +137,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           padding: "10px 0",
         }}
       >
-        {staticsThreadsElements.length > 0 && (
-          <button onClick={removeLastStaticsThreadsElementsCoords}>Undo</button>
-        )}
+      <button onClick={removeLastStaticsThreadsElementsCoords} disabled={!(staticsThreadsElements.length > 0)}>Undo</button>
       </div>
 
       <svg style={{ pointerEvents: "none", position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
