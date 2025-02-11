@@ -28,15 +28,21 @@ export function ListElements({ word, side, setIsUserDraging, setIsReleasedOnButt
         gridTemplateColumns: '1fr auto',
         alignItems: 'center',
         listStyleType: 'none',
+        borderRadius: '8px', /* Bords arrondis */
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', /* Ombrage léger */
+        padding: '15px',
+        margin: '10px 0',
+        width: '90%',
+        textAlign: 'center',
 
     }}> 
-        {side === "left" ? <WordElement word={word}/> : <PointElement word = {word} setIsUserDraging = {setIsUserDraging} setIsReleasedOnButton = {setIsReleasedOnButton} setWordsTracked={setWordsTracked}/> }
-        {side === "left" ? <PointElement word = {word} setIsUserDraging = {setIsUserDraging} setIsReleasedOnButton = {setIsReleasedOnButton} setWordsTracked={setWordsTracked}/> : <WordElement word={word}/> }
+        {side === "left" ? <WordElement word={word} side={side}/> : <PointElement word = {word} setIsUserDraging = {setIsUserDraging} setIsReleasedOnButton = {setIsReleasedOnButton} setWordsTracked={setWordsTracked}/> }
+        {side === "left" ? <PointElement word = {word} setIsUserDraging = {setIsUserDraging} setIsReleasedOnButton = {setIsReleasedOnButton} setWordsTracked={setWordsTracked}/> : <WordElement word={word} side={side}/> }
     </li>
 }
 
-function WordElement({ word }: { word: string }) {
-    return <p id={`${word}Text`} style={{ margin: 0, padding: 0, width: '100%' }}>
+function WordElement({word, side }: { word: string, side: "left"|"right" }){ 
+    return  <p id={`${word}Text`} style={{ margin: 0, padding: 0, width: '100%', textAlign: side === "left" ? "left" : "right", fontSize: '1.2em' }}>
         {word}
-    </p>
+        </p>
 }

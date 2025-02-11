@@ -113,16 +113,19 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
         justifyContent: "space-between",
         height: `${allocatedHeight}px`,
         width: `${allocatedWidth}px`,
+        borderRadius: "10px", /* Bords arrondis */
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", /* Ombrage léger */
+        overflow: "hidden", /* Cache le débordement */
       }}
     >
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          height: "100%",
-          width: "100%",
-          flexGrow: 1,
-        }}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        height: "100%",
+        width: "100%",
+        flexGrow: 1,
+      }}
       >
         <ColumnElement
           side="left"
@@ -131,6 +134,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           setIsReleasedOnButton={setIsReleasedOnButton}
           setWordsTracked={appendWordsTracked}
         />
+        <div></div> {/* Empty div to create the 25% space between columns */}
         <ColumnElement
           side="right"
           words={wordsListInstance.getWords("right")}
@@ -147,8 +151,44 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           padding: "10px 0",
         }}
       >
-      <button onClick={removeLastStaticsThreadsElementsCoords} disabled={!(staticsThreadsElements.length > 0)}>Undo</button>
-      {EnableFinalCheck && <button onClick={checkAnswer} disabled={!(staticsThreadsElements.length === wordsList.length) }>Check Answer {nbWrongAnswers}</button>}
+      <button 
+        onClick={removeLastStaticsThreadsElementsCoords} 
+        disabled={!(staticsThreadsElements.length > 0)}
+        style={{
+          backgroundColor: "#2196f3", /* Bleu vif */
+          color: "white",
+          border: "none",
+          borderRadius: "25px", /* Bords arrondis */
+          padding: "10px 20px",
+          margin: "5px",
+          cursor: "pointer",
+          transition: "background-color 0.3s ease", /* Effet de transition */
+        }}
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1976d2")}
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2196f3")}
+      >
+        Undo
+      </button>
+      {EnableFinalCheck && (
+        <button 
+          onClick={checkAnswer} 
+          disabled={!(staticsThreadsElements.length === wordsList.length)}
+          style={{
+        backgroundColor: "#2196f3", /* Bleu vif */
+        color: "white",
+        border: "none",
+        borderRadius: "25px", /* Bords arrondis */
+        padding: "10px 20px",
+        margin: "5px",
+        cursor: "pointer",
+        transition: "background-color 0.3s ease", /* Effet de transition */
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1976d2")}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2196f3")}
+        >
+          Check Answer {nbWrongAnswers}
+        </button>
+      )}
       </div>  
 
       <svg style={{ pointerEvents: "none", position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
