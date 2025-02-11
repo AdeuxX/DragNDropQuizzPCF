@@ -8,6 +8,8 @@ interface DragAndDropProps {
   wordsList: string[][];
   allocatedWidth: number;
   allocatedHeight: number;
+  EnableFinalCheck: boolean;
+  setNbWrongAnswersOutput: (nbWrongAnswers: number) => void;
 }
 
 interface WordsTracked {
@@ -21,12 +23,13 @@ interface StaticThreadElementProps {
   rightAnswer: boolean;
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, allocatedWidth}) => {
+const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, allocatedWidth, EnableFinalCheck, setNbWrongAnswersOutput: setNbWrongAnswersOutput}) => {
   // Déclaration des états avec React.usState
   const [isUserDragging, setIsUserDragging] = React.useState<boolean>(false);
   const [isReleasedOnButton, setIsReleasedOnButton] = React.useState<boolean>(false);
   const [wordsTracked, setWordsTracked] = React.useState<WordsTracked>({ wordInit: null, wordFinal: null });
   const [staticsThreadsElements, setStaticsThreadsElements] = React.useState<StaticThreadElementProps[]>([]);
+  const [nbWrongAnswers, setNbWrongAnswers] = React.useState<number>(0);
 
   // Création de l'instance WordsList (mise en cache via useMemo)
   const wordsListInstance = React.useMemo(() => new WordsList(wordsList), [wordsList]);
@@ -77,6 +80,11 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
       );
     });
   }
+  const checkAnswer = () => {
+    const wrongAnswersCount = staticsThreadsElements.filter((thread) => !thread.rightAnswer).length;
+    setNbWrongAnswers(wrongAnswersCount);
+    setNbWrongAnswersOutput(wrongAnswersCount);
+  }
   // Fonction pour ajouter un mot aux mots traqués
   const appendWordsTracked = (word: string) => {
     setWordsTracked((prev) => {
@@ -88,6 +96,8 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
       return prev;
     });
   };
+
+
 
   // Fonction pour supprimer le dernier élément statique
   const removeLastStaticsThreadsElementsCoords = () => {
@@ -138,7 +148,8 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
         }}
       >
       <button onClick={removeLastStaticsThreadsElementsCoords} disabled={!(staticsThreadsElements.length > 0)}>Undo</button>
-      </div>
+      {EnableFinalCheck && <button onClick={checkAnswer} disabled={!(staticsThreadsElements.length === wordsList.length) }>Check Answer {nbWrongAnswers}</button>}
+      </div>  
 
       <svg style={{ pointerEvents: "none", position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
       {isUserDragging && <ThreadElement/>}
@@ -149,6 +160,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           wordInit={newStaticThread.wordInit}
           wordFinal={newStaticThread.wordFinal}
           rightAnswer={newStaticThread.rightAnswer}
+          EnableFinalCheck={EnableFinalCheck}
         />
 
       ))}

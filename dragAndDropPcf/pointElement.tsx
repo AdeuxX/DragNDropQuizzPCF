@@ -28,8 +28,8 @@ export function PointElement({word, setIsUserDraging, setIsReleasedOnButton, set
             onTouchStart={() => handleMouseDown}
             onTouchEnd={()=> handleMouseUp}
             style={{
-            width: 10,
-            height:  10,
+            width: 30,
+            height:  30,
             borderRadius: '50%',
             backgroundColor: '#2196F3',
             border: 'none',
