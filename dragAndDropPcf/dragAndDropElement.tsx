@@ -3,6 +3,7 @@ import { ColumnElement } from "./columnElement";
 import { ThreadElement } from "./threadElement";
 import { StaticThreadElement } from "./staticThreadElement";
 import { WordsList } from "./wordsList";
+import './style.css'; // Importer le fichier CSS
 
 interface DragAndDropProps {
   wordsList: string[][];
@@ -24,20 +25,16 @@ interface StaticThreadElementProps {
 }
 
 const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, allocatedWidth, EnableFinalCheck, setNbWrongAnswersOutput: setNbWrongAnswersOutput}) => {
-  // Déclaration des états avec React.usState
   const [isUserDragging, setIsUserDragging] = React.useState<boolean>(false);
   const [isReleasedOnButton, setIsReleasedOnButton] = React.useState<boolean>(false);
   const [wordsTracked, setWordsTracked] = React.useState<WordsTracked>({ wordInit: null, wordFinal: null });
   const [staticsThreadsElements, setStaticsThreadsElements] = React.useState<StaticThreadElementProps[]>([]);
   const [nbWrongAnswers, setNbWrongAnswers] = React.useState<number>(0);
 
-  // Création de l'instance WordsList (mise en cache via useMemo)
   const wordsListInstance = React.useMemo(() => new WordsList(wordsList), [wordsList]);
 
-  // Gestion de l'événement "mouseup"
   const handleMouseUp = () => {
     setIsUserDragging(false);
-    // Réinitialise les mots traqués
     setWordsTracked({ wordInit: null, wordFinal: null });
   };
 
@@ -48,11 +45,9 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
     };
   }, []);
 
-  // Effet pour simuler le componentDidUpdate (pour isReleasedOnButton et wordsTracked)
   React.useEffect(() => {
     if (isReleasedOnButton) {
       if (wordsTracked.wordInit && wordsTracked.wordFinal) {
-        // Si les mots ne se trouvent pas du même côté, on ajoute le thread statique
         if (!wordsListInstance.checkIfWordsSameSide({ wordInit: wordsTracked.wordInit, wordFinal: wordsTracked.wordFinal }) && !verifyNoExistingThreadFromPoint()) {
           const rightAnswer = wordsListInstance.checkIfCorrectAssociation({
             wordInit: wordsTracked.wordInit,
@@ -64,7 +59,6 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           ]);
         }
       }
-      // Réinitialisation des états concernés
       setIsReleasedOnButton(false);
       setWordsTracked({ wordInit: null, wordFinal: null });
     }
@@ -80,12 +74,13 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
       );
     });
   }
+
   const checkAnswer = () => {
     const wrongAnswersCount = staticsThreadsElements.filter((thread) => !thread.rightAnswer).length;
     setNbWrongAnswers(wrongAnswersCount);
     setNbWrongAnswersOutput(wrongAnswersCount);
   }
-  // Fonction pour ajouter un mot aux mots traqués
+
   const appendWordsTracked = (word: string) => {
     setWordsTracked((prev) => {
       if (!prev.wordInit) {
@@ -97,36 +92,13 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
     });
   };
 
-
-
-  // Fonction pour supprimer le dernier élément statique
   const removeLastStaticsThreadsElementsCoords = () => {
     setStaticsThreadsElements((prev) => prev.slice(0, -1));
   };
 
   return (
-
-    <div id="dragAndDropContainer"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: `${allocatedHeight}px`,
-        width: `${allocatedWidth}px`,
-        borderRadius: "10px", /* Bords arrondis */
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", /* Ombrage léger */
-        overflow: "hidden", /* Cache le débordement */
-      }}
-    >
-      <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        height: "100%",
-        width: "100%",
-        flexGrow: 1,
-      }}
-      >
+    <div id="dragAndDropContainer" style={{ height: `${allocatedHeight}px`, width: `${allocatedWidth}px` }}>
+      <div className="columns-container">
         <ColumnElement
           side="left"
           words={wordsListInstance.getWords("left")}
@@ -144,67 +116,37 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
         />
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          padding: "10px 0",
-        }}
-      >
-      <button 
-        onClick={removeLastStaticsThreadsElementsCoords} 
-        disabled={!(staticsThreadsElements.length > 0)}
-        style={{
-          backgroundColor: "#2196f3", /* Bleu vif */
-          color: "white",
-          border: "none",
-          borderRadius: "25px", /* Bords arrondis */
-          padding: "10px 20px",
-          margin: "5px",
-          cursor: "pointer",
-          transition: "background-color 0.3s ease", /* Effet de transition */
-        }}
-        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1976d2")}
-        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2196f3")}
-      >
-        Undo
-      </button>
-      {EnableFinalCheck && (
-        <button 
-          onClick={checkAnswer} 
-          disabled={!(staticsThreadsElements.length === wordsList.length)}
-          style={{
-        backgroundColor: "#2196f3", /* Bleu vif */
-        color: "white",
-        border: "none",
-        borderRadius: "25px", /* Bords arrondis */
-        padding: "10px 20px",
-        margin: "5px",
-        cursor: "pointer",
-        transition: "background-color 0.3s ease", /* Effet de transition */
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1976d2")}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2196f3")}
+      <div className="buttons-container">
+        <button
+          className="button"
+          onClick={removeLastStaticsThreadsElementsCoords}
+          disabled={!(staticsThreadsElements.length > 0)}
         >
-          Check Answer {nbWrongAnswers}
+          Undo
         </button>
-      )}
-      </div>  
+        {EnableFinalCheck && (
+          <button
+            className="button"
+            onClick={checkAnswer}
+            disabled={!(staticsThreadsElements.length === wordsList.length)}
+          >
+            Check Answer {nbWrongAnswers}
+          </button>
+        )}
+      </div>
 
-      <svg style={{ pointerEvents: "none", position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
-      {isUserDragging && <ThreadElement/>}
-
-      {staticsThreadsElements.map((newStaticThread, index) => (
-        <StaticThreadElement
-          key={index}
-          wordInit={newStaticThread.wordInit}
-          wordFinal={newStaticThread.wordFinal}
-          rightAnswer={newStaticThread.rightAnswer}
-          EnableFinalCheck={EnableFinalCheck}
-        />
-
-      ))}
-    </svg>
+      <svg className="svg-overlay">
+        {isUserDragging && <ThreadElement/>}
+        {staticsThreadsElements.map((newStaticThread, index) => (
+          <StaticThreadElement
+            key={index}
+            wordInit={newStaticThread.wordInit}
+            wordFinal={newStaticThread.wordFinal}
+            rightAnswer={newStaticThread.rightAnswer}
+            EnableFinalCheck={EnableFinalCheck}
+          />
+        ))}
+      </svg>
     </div>
   );
 };
