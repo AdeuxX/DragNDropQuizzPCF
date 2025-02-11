@@ -82,7 +82,6 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer }: Static
   }, []);
 
   return (
-    <svg style={{ pointerEvents: "none", position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
       <line
         x1={coords.xinit}
         y1={coords.yinit}
@@ -91,6 +90,5 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer }: Static
         stroke={rightAnswer ? "green" : "red"}
         strokeWidth={2}
       />
-    </svg>
   );
 }
