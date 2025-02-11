@@ -44,7 +44,6 @@ export function ThreadElement() {
             document.removeEventListener("mousemove", handleMouseMove);
         };
     }, []);
-
     return (
         <line
             x1={initialPosition.current ? initialPosition.current.x : 0}
@@ -52,7 +51,9 @@ export function ThreadElement() {
             x2={mousePosition.x}
             y2={mousePosition.y}
             stroke="black"
-            strokeWidth={2}
+            strokeWidth={3}
+            strokeLinecap="round"
+            style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
         />
     );
 }
