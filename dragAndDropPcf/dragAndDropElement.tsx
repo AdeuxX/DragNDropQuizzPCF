@@ -50,7 +50,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
     if (isReleasedOnButton) {
       if (wordsTracked.wordInit && wordsTracked.wordFinal) {
         // Si les mots ne se trouvent pas du même côté, on ajoute le thread statique
-        if (!wordsListInstance.checkIfWordsSameSide({ wordInit: wordsTracked.wordInit, wordFinal: wordsTracked.wordFinal })) {
+        if (!wordsListInstance.checkIfWordsSameSide({ wordInit: wordsTracked.wordInit, wordFinal: wordsTracked.wordFinal }) && !verifyNoExistingThreadFromPoint()) {
           const rightAnswer = wordsListInstance.checkIfCorrectAssociation({
             wordInit: wordsTracked.wordInit,
             wordFinal: wordsTracked.wordFinal,
@@ -67,6 +67,16 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
     }
   }, [isReleasedOnButton, wordsTracked, wordsListInstance]);
 
+  const verifyNoExistingThreadFromPoint = ():boolean => {
+    return staticsThreadsElements.some((thread) => {
+      return (
+        thread.wordInit === wordsTracked.wordInit ||
+        thread.wordFinal === wordsTracked.wordInit ||
+        thread.wordInit === wordsTracked.wordFinal ||
+        thread.wordFinal === wordsTracked.wordFinal
+      );
+    });
+  }
   // Fonction pour ajouter un mot aux mots traqués
   const appendWordsTracked = (word: string) => {
     setWordsTracked((prev) => {
@@ -104,7 +114,6 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           flexGrow: 1,
         }}
       >
-        
         <ColumnElement
           side="left"
           words={wordsListInstance.getWords("left")}
