@@ -44,7 +44,7 @@ export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IO
     
       // Passer la liste de mots au composant DragAndDrop
       this._notifyOutputChanged();
-      return React.createElement(DragAndDrop, { wordsList: wordsListArray, allocatedWidth: context.mode.allocatedWidth, allocatedHeight: context.mode.allocatedHeight  });
+      return React.createElement(DragAndDrop, { wordsList: wordsListArray, allocatedWidth: context.mode.allocatedWidth, allocatedHeight: context.mode.allocatedHeight, EnableFinalCheck: Boolean(context.parameters.EnableFinalCheck.raw)  });
     }
     
     public getOutputs(): IOutputs {

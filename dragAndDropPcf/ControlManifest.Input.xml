@@ -20,6 +20,7 @@
     </external-service-usage>
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="WordsList" display-name-key="WordsListKey" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="EnableFinalCheck" display-name-key="EnableFinalCheckKey" description-key="Enable or disable the final check of the quiz" of-type="TwoOptions" usage="bound" required="false" />
     <!--
       Property node's of-type attribute can be of-type-group attribute.
       Example:
