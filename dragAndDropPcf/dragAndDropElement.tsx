@@ -30,6 +30,8 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
   const [wordsTracked, setWordsTracked] = React.useState<WordsTracked>({ wordInit: null, wordFinal: null });
   const [staticsThreadsElements, setStaticsThreadsElements] = React.useState<StaticThreadElementProps[]>([]);
   const [nbWrongAnswers, setNbWrongAnswers] = React.useState<number>(0);
+  const [containerRect, setContainerRect] = React.useState({ left: 0, top: 0 });
+
 
   const wordsListInstance = React.useMemo(() => new WordsList(wordsList), [wordsList]);
 
@@ -96,6 +98,22 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
     setStaticsThreadsElements((prev) => prev.slice(0, -1));
   };
 
+  React.useEffect(() => {
+    const updateContainerRect = () => {
+      const rect = document.getElementById('dragAndDropContainer')?.getBoundingClientRect();
+      if (rect) {
+        setContainerRect({ left: rect.left, top: rect.top });
+      }
+    };
+
+    updateContainerRect();
+    window.addEventListener('resize', updateContainerRect);
+
+    return () => {
+      window.removeEventListener('resize', updateContainerRect);
+    };
+  }, []);
+
   return (
     <div id="dragAndDropContainer" style={{ height: `${allocatedHeight}px`, width: `${allocatedWidth}px` }}>
       <div className="columns-container">
@@ -136,17 +154,24 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
       </div>
 
       <svg className="svg-overlay">
-        {isUserDragging && <ThreadElement/>}
-        {staticsThreadsElements.map((newStaticThread, index) => (
-          <StaticThreadElement
-            key={index}
-            wordInit={newStaticThread.wordInit}
-            wordFinal={newStaticThread.wordFinal}
-            rightAnswer={newStaticThread.rightAnswer}
-            EnableFinalCheck={EnableFinalCheck}
-          />
-        ))}
-      </svg>
+    <defs>
+      <clipPath id="clipPathWithOffset">
+        <rect x={containerRect.left} y={containerRect.top} width={allocatedWidth} height={allocatedHeight} />
+        </clipPath>
+    </defs>
+    <g clipPath="url(#clipPathWithOffset)">
+      {isUserDragging && <ThreadElement />}
+      {staticsThreadsElements.map((newStaticThread, index) => (
+        <StaticThreadElement
+          key={index}
+          wordInit={newStaticThread.wordInit}
+          wordFinal={newStaticThread.wordFinal}
+          rightAnswer={newStaticThread.rightAnswer}
+          EnableFinalCheck={EnableFinalCheck}
+        />
+      ))}
+    </g>
+  </svg>
     </div>
   );
 };

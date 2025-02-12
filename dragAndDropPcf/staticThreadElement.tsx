@@ -85,6 +85,16 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer, EnableFi
   });
 
   React.useEffect(() => {
+      const container = document.getElementById("dragAndDropContainer");
+      if (container) {
+      container.addEventListener("scroll", updateCoords);
+      }
+      return () => {
+          document.removeEventListener("scroll", updateCoords);
+      };
+  }, []);
+  
+  React.useEffect(() => {
     const observer = new MutationObserver(updateCoords);
     observer.observe(document.body, { childList: true, subtree: true, attributes: true });
 
@@ -98,10 +108,6 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer, EnableFi
         x2={coords.xfinal}
         y2={coords.yfinal}
         className={`thread-line ${EnableFinalCheck ? 'final-check' : rightAnswer ? 'right-answer' : 'wrong-answer'}`}
-        // stroke={EnableFinalCheck ? "black" : rightAnswer ? "#4CAF50" : "#F44336"}
-        // strokeWidth={3}
-        // strokeLinecap="round"
-        // style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
       />
   );
 }
