@@ -37,6 +37,41 @@ DragNDropQuizzPCF is a customizable drag-and-drop quiz component for PowerApps. 
 3. **Configure the Component**: Once imported, you can add the DragNDrop component to your app. Configure the input parameters such as `WordsList`, `CustomStyles`, and `EnableFinalCheck` as needed.
 
 4. **Test the Component**: After adding the component, test it within your PowerApps application to ensure it functions as expected.
+## How to Use the Component
+
+1. **Add the Component to Your App**: After importing the DragNDropQuizzPCF component into your PowerApps environment, add it to your app by selecting it from the list of available components.
+
+2. **Configure Input Parameters**: Set up the necessary input parameters for the component:
+    - `WordsList`: Provide a JSON array of words that will be used in the quiz. The array should be of type `string[][]`. Here is an example:
+    ```json
+    [
+        ["pomme", "apple"],
+        ["chien", "dog"],
+        ["maison", "house"],
+        ["école", "school"],
+        ["voiture", "car"],
+        ["livre", "book"],
+        ["soleil", "sun"],
+        ["ordinateur", "computer"],
+        ["fleur", "flower"]
+    ]
+    ```
+
+    - `CustomStyles`: Apply your own CSS styles to customize the appearance of the component. This allows you to implement your own branding guidelines, change the orientation of the component, add animations, and more. Thre string should be directly in CSS syntax. Here is an example : 
+    ```css
+          .buttons-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+  }
+    .button:hover {
+    background-color: red;
+  }
+    ```
+        
+    - `EnableFinalCheck`: Choose whether to enable the final verification mode where users can check all their answers at once. When set to `true`, users must press a button to verify their answers, and they have no way of knowing if their answers are correct until they press the button. When set to `false`, the lines will immediately turn green or red depending on whether the answer is correct.
+
+By following these steps, you can fully customize the DragNDropQuizzPCF component to fit the specific needs and design of your PowerApps application.
 
 ## Conclusion
 
