@@ -50,10 +50,11 @@ export function ThreadElement() {
             y1={initialPosition.current ? initialPosition.current.y : 0}
             x2={mousePosition.x}
             y2={mousePosition.y}
-            stroke="black"
-            strokeWidth={3}
-            strokeLinecap="round"
-            style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
+            className="dynamic-thread-line"
+            // stroke="black"
+            // strokeWidth={3}
+            // strokeLinecap="round"
+            // style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
         />
     );
 }

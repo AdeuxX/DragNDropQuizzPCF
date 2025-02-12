@@ -15,11 +15,6 @@ export function PointElement({word, setIsUserDraging, setIsReleasedOnButton, set
         setIsReleasedOnButton(true);
         setWordsTracked(word)
     };
-    React.useEffect(
-        () => {
-            document.getElementById(`${word}Button`)
-        }
-    )
     return (
         <button 
             id = {`${word}Button`}

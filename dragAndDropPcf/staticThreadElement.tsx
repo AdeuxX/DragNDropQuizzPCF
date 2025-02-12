@@ -97,10 +97,11 @@ export function StaticThreadElement({ wordInit, wordFinal, rightAnswer, EnableFi
         y1={coords.yinit}
         x2={coords.xfinal}
         y2={coords.yfinal}
-        stroke={EnableFinalCheck ? "black" : rightAnswer ? "#4CAF50" : "#F44336"}
-        strokeWidth={3}
-        strokeLinecap="round"
-        style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
+        className={`thread-line ${EnableFinalCheck ? 'final-check' : rightAnswer ? 'right-answer' : 'wrong-answer'}`}
+        // stroke={EnableFinalCheck ? "black" : rightAnswer ? "#4CAF50" : "#F44336"}
+        // strokeWidth={3}
+        // strokeLinecap="round"
+        // style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
       />
   );
 }
