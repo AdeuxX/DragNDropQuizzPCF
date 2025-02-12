@@ -11,6 +11,8 @@ interface DragAndDropProps {
   allocatedHeight: number;
   EnableFinalCheck: boolean;
   setNbWrongAnswersOutput: (nbWrongAnswers: number) => void;
+  undoButtonText: string;
+  verifyButtonText: string;
 }
 
 interface WordsTracked {
@@ -24,7 +26,7 @@ interface StaticThreadElementProps {
   rightAnswer: boolean;
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, allocatedWidth, EnableFinalCheck, setNbWrongAnswersOutput: setNbWrongAnswersOutput}) => {
+const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, allocatedWidth, EnableFinalCheck, setNbWrongAnswersOutput: setNbWrongAnswersOutput, undoButtonText, verifyButtonText}) => {
   const [isUserDragging, setIsUserDragging] = React.useState<boolean>(false);
   const [isReleasedOnButton, setIsReleasedOnButton] = React.useState<boolean>(false);
   const [wordsTracked, setWordsTracked] = React.useState<WordsTracked>({ wordInit: null, wordFinal: null });
@@ -140,7 +142,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           onClick={removeLastStaticsThreadsElementsCoords}
           disabled={!(staticsThreadsElements.length > 0)}
         >
-          Undo
+          {undoButtonText}
         </button>
         {EnableFinalCheck && (
           <button
@@ -148,7 +150,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
             onClick={checkAnswer}
             disabled={!(staticsThreadsElements.length === wordsList.length)}
           >
-            Check Answer {nbWrongAnswers}
+            {verifyButtonText} {nbWrongAnswers}
           </button>
         )}
       </div>

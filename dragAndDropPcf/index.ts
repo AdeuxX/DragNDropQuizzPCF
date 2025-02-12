@@ -35,6 +35,9 @@ export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IO
     // Récupérer la valeur de WordsList depuis le contexte
     const wordsListValue = context.parameters.WordsList.raw || "";
     const customStylesValue = context.parameters.CustomStyles.raw || "";
+    const undoButtonText = context.parameters.UndoButtonText.raw || "Undo";
+    const verifyButtonText = context.parameters.VerifyButtonText.raw || "Verify Answer";
+
     if (wordsListValue !== this._previousWordsListValue) {
       this._previousWordsListValue = wordsListValue;
 
@@ -59,7 +62,9 @@ export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IO
         allocatedWidth: context.mode.allocatedWidth,
         allocatedHeight: context.mode.allocatedHeight,
         EnableFinalCheck: Boolean(context.parameters.EnableFinalCheck.raw),
-        setNbWrongAnswersOutput: this.setWrongAnswersOutput
+        setNbWrongAnswersOutput: this.setWrongAnswersOutput,
+        undoButtonText: undoButtonText,
+        verifyButtonText: verifyButtonText
       });
     }
 
