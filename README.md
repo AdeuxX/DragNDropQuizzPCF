@@ -79,6 +79,29 @@ DragNDropQuizzPCF is a customizable drag-and-drop quiz component for PowerApps. 
 
 By following these steps, you can fully customize the DragNDropQuizzPCF component to fit the specific needs and design of your PowerApps application.
 
+## Technical Operation
+
+### Component Architecture
+
+The DragNDropQuizzPCF component is built using TypeScript and leverages the PowerApps Component Framework (PCF) to integrate seamlessly with PowerApps. The component utilizes SVG for rendering draggable elements and CSS for styling, ensuring a responsive and dynamic user experience.
+
+### Key Technical Aspects
+
+- **SVG Rendering**: The component uses SVG to draw lines and other graphical elements, providing a smooth and interactive drag-and-drop experience.
+  - **Dynamic SVG Lines**: These lines are drawn dynamically based on user interactions. The starting point of the line is the initial position of the mouse when the user begins to drag. The endpoint is the current position of the mouse as it moves.
+  - **Static SVG Lines**: These lines are drawn with fixed coordinates. The starting point is the center of the button associated with a word, and the endpoint is the final position where the word is dropped.
+  - **Simulated Drag-and-Drop**: The component simulates a drag-and-drop experience by drawing lines that follow the mouse cursor rather than actually dragging objects. This approach provides visual feedback and enhances the interactive nature of the quiz.
+
+- **Event Handling**: Event listeners are implemented to handle drag-and-drop interactions, ensuring real-time feedback and validation. These listeners capture mouse events to update the SVG lines dynamically, providing instant visual confirmation of the user's actions.
+
+- **Customization**: The component supports extensive customization through JSON arrays for quiz content and CSS for styling, allowing developers to tailor the component to their specific needs.
+
+- **CSS Transformations**: During the implementation in PowerApps, an unexpected and undocumented CSS transformation may occur. This transformation can affect the positioning of elements within the component. For more details on handling coordinates in PCFs, refer to the following resource: [How to Work with Coordinates in PCFs](https://dianabirkelbach.wordpress.com/2024/08/24/how-to-work-with-coordinates-in-pcfs/) 
+
+**Warning**: During local testing with `npm run start`, the SVG coordinate system (0,0) starts at the top-left corner of the page. However, within the PowerApps environment, the SVG coordinate system (0,0) starts at the top-left corner of the component itself. This creates a shift, which is normal and expected, but it will not occur once the component is deployed in the PowerApps application. By uncommenting a specific section in `statictThreadsElement.tsx`, you can prevent this shift during local testing. However, make sure to re-comment this section before deploying the solution.
+
+By understanding these technical aspects, you can effectively develop, test, and deploy the DragNDropQuizzPCF component in your PowerApps applications.
+
 ## Conclusion
 
 The DragNDropQuizzPCF component provides a powerful and flexible way to create interactive quizzes in PowerApps. With its customization options and responsive design, it enhances power apps developers engagement and learning experiences. For further assistance, please refer to the documentation or reach out to the support team.
