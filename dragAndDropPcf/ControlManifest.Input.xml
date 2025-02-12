@@ -21,6 +21,8 @@
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="WordsList" display-name-key="WordsListKey" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
     <property name="EnableFinalCheck" display-name-key="EnableFinalCheckKey" description-key="Enable or disable the final check of the quiz" of-type="TwoOptions" usage="input" required="false" />
+    <property name="CustomStyles" display-name-key="CustomStylesKey" description-key="Enter custom CSS styles" of-type="SingleLine.Text" usage="input" required="false" />
+
     <property name="nbWrongAnswers" display-name-key="nbWrongAnswersKey" description-key="number of wrongs answers in the quizz" of-type="SingleLine.Text" usage="output" required="false" />
     <!--
       Property node's of-type attribute can be of-type-group attribute.
