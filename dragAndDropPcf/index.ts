@@ -35,8 +35,8 @@ export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IO
     // Récupérer la valeur de WordsList depuis le contexte
     const wordsListValue = context.parameters.WordsList.raw || "";
     const customStylesValue = context.parameters.CustomStyles.raw || "";
-    const undoButtonText = context.parameters.UndoButtonText.raw || "Undo";
-    const verifyButtonText = context.parameters.VerifyButtonText.raw || "Verify Answer";
+    const undoButtonText = context.parameters.UndoButtonText.raw === "val" ? "Undo" : (context.parameters.UndoButtonText.raw || "Undo");
+    const verifyButtonText = context.parameters.VerifyButtonText.raw === "val" ? "Check Answers" : (context.parameters.VerifyButtonText.raw || "Check Answers");
 
     if (wordsListValue !== this._previousWordsListValue) {
       this._previousWordsListValue = wordsListValue;
