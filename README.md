@@ -77,6 +77,8 @@ DragNDropQuizzPCF is a customizable drag-and-drop quiz component for PowerApps. 
         
     - `EnableFinalCheck`: Choose whether to enable the final verification mode where users can check all their answers at once. When set to `true`, users must press a button to verify their answers, and they have no way of knowing if their answers are correct until they press the button. When set to `false`, the lines will immediately turn green or red depending on whether the answer is correct.
 
+    - `Button Text Customization`: You can also customize the text of the "Undo" and "Verify Answer" buttons to better suit your application. For example, you can change "Undo" to "Annuler" and "Verify Answer" to "Vérifier la Réponse" for a French application.
+
 By following these steps, you can fully customize the DragNDropQuizzPCF component to fit the specific needs and design of your PowerApps application.
 
 ## Technical Operation

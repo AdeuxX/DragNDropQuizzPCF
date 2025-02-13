@@ -26,7 +26,6 @@ export function PointElement({word, setIsUserDraging, setIsReleasedOnButton, set
             handleMouseUp();
           }
       };
-      console.log(isUserDragging)
     return (
         <button 
             id = {`${word}Button`}
