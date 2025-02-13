@@ -94,8 +94,6 @@ The DragNDropQuizzPCF component is built using TypeScript and leverages the Powe
   - **Static SVG Lines**: These lines are drawn with fixed coordinates. The starting point is the center of the button associated with a word, and the endpoint is the final position where the word is dropped.
   - **Simulated Drag-and-Drop**: The component simulates a drag-and-drop experience by drawing lines that follow the mouse cursor rather than actually dragging objects. This approach provides visual feedback and enhances the interactive nature of the quiz.
 
-- **Event Handling**: Event listeners are implemented to handle drag-and-drop interactions, ensuring real-time feedback and validation. These listeners capture mouse events to update the SVG lines dynamically, providing instant visual confirmation of the user's actions.
-
 - **Customization**: The component supports extensive customization through JSON arrays for quiz content and CSS for styling, allowing developers to tailor the component to their specific needs.
 
 - **CSS Transformations**: During the implementation in PowerApps, an unexpected and undocumented CSS transformation may occur. This transformation can affect the positioning of elements within the component. For more details on handling coordinates in PCFs, refer to the following resource: [How to Work with Coordinates in PCFs](https://dianabirkelbach.wordpress.com/2024/08/24/how-to-work-with-coordinates-in-pcfs/) 
