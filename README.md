@@ -104,4 +104,4 @@ By understanding these technical aspects, you can effectively develop, test, and
 
 ## Conclusion
 
-The DragNDropQuizzPCF component provides a powerful and flexible way to create interactive quizzes in PowerApps. With its customization options and responsive design, it enhances power apps developers engagement and learning experiences. For further assistance, please refer to the documentation or reach out to the support team.
+The DragNDropQuizzPCF component provides a powerful and flexible way to create interactive quizzes in PowerApps. With its customization options and responsive design, it enhances power apps developers engagement and learning experiences. For further assistance, please refer to the documentation.

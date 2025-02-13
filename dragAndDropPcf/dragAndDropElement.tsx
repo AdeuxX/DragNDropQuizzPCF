@@ -117,7 +117,13 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
   }, []);
 
   return (
-    <div id="dragAndDropContainer" style={{ height: `${allocatedHeight}px`, width: `${allocatedWidth}px` }}>
+    <div
+    id="dragAndDropContainer"
+    role="application"
+    aria-label="Drag and drop word matching game"
+    style={{ height: `${allocatedHeight}px`, width: `${allocatedWidth}px` }}
+    tabIndex = {0}
+  >
       <div className="columns-container">
         <ColumnElement
           side="left"
@@ -125,6 +131,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           setIsUserDraging={setIsUserDragging}
           setIsReleasedOnButton={setIsReleasedOnButton}
           setWordsTracked={appendWordsTracked}
+          isUserDragging= {isUserDragging}
         />
         <div></div> {/* Empty div to create the 25% space between columns */}
         <ColumnElement
@@ -133,6 +140,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           setIsUserDraging={setIsUserDragging}
           setIsReleasedOnButton={setIsReleasedOnButton}
           setWordsTracked={appendWordsTracked}
+          isUserDragging= {isUserDragging}
         />
       </div>
 
@@ -141,6 +149,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
           className="button"
           onClick={removeLastStaticsThreadsElementsCoords}
           disabled={!(staticsThreadsElements.length > 0)}
+          aria-disabled={!(staticsThreadsElements.length > 0)}
         >
           {undoButtonText}
         </button>
@@ -149,6 +158,8 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ wordsList, allocatedHeight, a
             className="button"
             onClick={checkAnswer}
             disabled={!(staticsThreadsElements.length === wordsList.length)}
+            aria-disabled={!(staticsThreadsElements.length === wordsList.length)}
+
           >
             {verifyButtonText} {nbWrongAnswers}
           </button>

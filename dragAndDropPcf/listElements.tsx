@@ -20,19 +20,20 @@ interface ListElementsProps {
     setIsUserDraging: (isDragging: boolean) => void
     setIsReleasedOnButton: (isReleasedOnButton:boolean) => void
     setWordsTracked: (word: string) => void
+    isUserDragging: boolean
 }
 
-export function ListElements({ word, side, setIsUserDraging, setIsReleasedOnButton, setWordsTracked}: ListElementsProps){
+export function ListElements({ word, side, setIsUserDraging, setIsReleasedOnButton, setWordsTracked, isUserDragging}: ListElementsProps){
     return (
-        <li className="list-element">
+        <li className="list-element" role="listitem">
           {side === "left" ? (
             <>
               <WordElement word={word} side={side} />
-              <PointElement word={word} setIsUserDraging={setIsUserDraging} setIsReleasedOnButton={setIsReleasedOnButton} setWordsTracked={setWordsTracked} />
+              <PointElement word={word} setIsUserDraging={setIsUserDraging} setIsReleasedOnButton={setIsReleasedOnButton} setWordsTracked={setWordsTracked} isUserDragging={isUserDragging}/>
             </>
           ) : (
             <>
-              <PointElement word={word} setIsUserDraging={setIsUserDraging} setIsReleasedOnButton={setIsReleasedOnButton} setWordsTracked={setWordsTracked} />
+              <PointElement word={word} setIsUserDraging={setIsUserDraging} setIsReleasedOnButton={setIsReleasedOnButton} setWordsTracked={setWordsTracked} isUserDragging={isUserDragging}/>
               <WordElement word={word} side={side} />
             </>
           )}
@@ -41,7 +42,7 @@ export function ListElements({ word, side, setIsUserDraging, setIsReleasedOnButt
 }
 
 function WordElement({word, side }: { word: string, side: "left"|"right" }){ 
-    return  <p id={`${word}Text`} className={`word-element ${side}`}>
+    return  <p id={`${word}Text`} className={`word-element ${side}`} role="text">
         {word}
         </p>
 }
