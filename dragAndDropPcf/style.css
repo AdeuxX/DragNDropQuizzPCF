@@ -107,21 +107,29 @@
     text-align: center;
   }
   
-  .word-element {
+  .element-display {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
     font-size: 1.2em;
   }
   
-  .word-element.left {
+  .element-display.left {
     text-align: left;
   }
   
-  .word-element.right {
+  .element-display.right {
     text-align: right;
   }
   
+  .image-element {
+    width: 50%; 
+    /* height: 100%; Prend toute la hauteur disponible */
+    object-fit: contain; /* Conserve les proportions de l'image */
+}
+
+
   .congratulations-title{
     color:green;
   }
@@ -142,8 +150,3 @@
     justify-content: center;
   }
 
-  .image-element {
-    max-width: 100px; /* Limite la largeur maximale de l'image */
-    max-height: 100px; /* Limite la hauteur maximale de l'image */
-    object-fit: contain; /* Conserve les proportions de l'image */
-}
