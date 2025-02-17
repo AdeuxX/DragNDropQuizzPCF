@@ -30,27 +30,13 @@ export function PointElement({ element, setIsUserDragging, setIsReleasedOnButton
 
     return (
         <button
+            className="point-element"
             id={`${element.value}Button`}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onTouchStart={handleMouseDown}
             onTouchEnd={handleMouseUp}
             onClick={handleClick}
-            style={{
-                width: "30px",
-                height: "30px",
-                borderRadius: "50%",
-                backgroundColor: "#2196f3",
-                border: "none",
-                color: "white",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "all 0.3s ease",
-                flexShrink: 0,
-                outline: "none",
-            }}
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1976d2'}
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2196F3'}
             aria-label={`Select ${element.value}`}

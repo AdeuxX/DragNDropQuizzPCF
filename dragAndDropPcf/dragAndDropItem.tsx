@@ -156,7 +156,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
       </div>
       <div className="buttons-container">
         <button
-          className="button"
+          className="button-dnd"
           onClick={removeLastStaticsThreadsElementsCoords}
           disabled={!(staticsThreadsElements.length > 0)}
           aria-disabled={!(staticsThreadsElements.length > 0)}
@@ -165,7 +165,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
         </button>
         {EnableFinalCheck && (
           <button
-            className="button"
+            className="button-dnd"
             onClick={checkAnswer}
             disabled={!(staticsThreadsElements.length === elementsList.length)}
             aria-disabled={!(staticsThreadsElements.length === elementsList.length)}
