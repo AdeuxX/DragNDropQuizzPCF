@@ -19,9 +19,11 @@
       -->
     </external-service-usage>
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="WordsList" display-name-key="WordsListKey" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="ElementsList" display-name-key="ElementsListKey" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
     <property name="UndoButtonText" display-name-key="UndoButtonTextKey" description-key="Text for the Undo button" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="VerifyButtonText" display-name-key="VerifyButtonTextKey" description-key="Text for the Verify Answer button" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="IncorrectMessage" display-name-key="IncorrectMessageKey" description-key="Message displayed for incorrect answers" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="CongratulationsMessage" display-name-key="CongratulationsMessageKey" description-key="Message displayed for correct answers" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="EnableFinalCheck" display-name-key="EnableFinalCheckKey" description-key="Enable or disable the final check of the quiz" of-type="TwoOptions" usage="input" required="false" />
     <property name="CustomStyles" display-name-key="CustomStylesKey" description-key="Enter custom CSS styles" of-type="SingleLine.Text" usage="input" required="false" />
 

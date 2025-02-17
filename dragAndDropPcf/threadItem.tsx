@@ -37,24 +37,24 @@ export function ThreadElement() {
         const container = document.getElementById("dragAndDropContainer");
         if (container) {
         container.addEventListener("mousemove", handleMouseMove);
+        
         }
-
-
         return () => {
-            document.removeEventListener("mousemove", handleMouseMove);
+            container?.removeEventListener("mousemove", handleMouseMove);
         };
     }, []);
     return (
         <line
-            x1={initialPosition.current ? initialPosition.current.x : 0}
-            y1={initialPosition.current ? initialPosition.current.y : 0}
-            x2={mousePosition.x}
-            y2={mousePosition.y}
+            // x1={initialPosition.current ? initialPosition.current.x : 0}
+            // y1={initialPosition.current ? initialPosition.current.y : 0}
+            // x2={mousePosition.x}
+            // y2={mousePosition.y}
+            x1={initialPosition.current ? initialPosition.current.x + 30 : 0}
+            y1={initialPosition.current ? initialPosition.current.y + 70 : 0}
+            x2={mousePosition.x + 30}
+            y2={mousePosition.y + 70}
             className="dynamic-thread-line"
-            // stroke="black"
-            // strokeWidth={3}
-            // strokeLinecap="round"
-            // style={{ filter: "drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2))" }}
+
         />
     );
 }

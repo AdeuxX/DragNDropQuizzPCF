@@ -121,3 +121,29 @@
   .word-element.right {
     text-align: right;
   }
+  
+  .congratulations-title{
+    color:green;
+  }
+
+  .incorrect-title{
+    color:red;
+  }
+
+  .congratulations-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .incorrect-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-element {
+    max-width: 100px; /* Limite la largeur maximale de l'image */
+    max-height: 100px; /* Limite la hauteur maximale de l'image */
+    object-fit: contain; /* Conserve les proportions de l'image */
+}

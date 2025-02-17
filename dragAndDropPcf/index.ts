@@ -1,15 +1,15 @@
 import { IInputs, IOutputs } from './generated/ManifestTypes';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import DragAndDrop from './dragAndDropElement';
+import DragAndDrop from './dragAndDropItem';
 
 export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private _container!: HTMLDivElement;
   private _notifyOutputChanged!: () => void;
   private _nbWrongAnswers: number = 0; // Initialise à 0
   private _customStyleElement: HTMLStyleElement | null = null;
-  private _previousWordsListValue: string = "";
-  private _wordsListArray: string[][] = [];
+  private _previouselementsListValue: string = "";
+  private _elementsListArray: string[][] = [];
   constructor() {  }
 
   public init(
@@ -29,35 +29,39 @@ export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IO
   }
 
   public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
-    // Récupérer la valeur de WordsList depuis le contexte
-    const wordsListValue = context.parameters.WordsList.raw || "";
+    // Récupérer la valeur de elementsList depuis le contexte
+    const elementsListValue = context.parameters.ElementsList.raw || "";
     const customStylesValue = context.parameters.CustomStyles.raw || "";
     const undoButtonText = context.parameters.UndoButtonText.raw === "val" ? "Undo" : (context.parameters.UndoButtonText.raw || "Undo");
     const verifyButtonText = context.parameters.VerifyButtonText.raw === "val" ? "Check Answers" : (context.parameters.VerifyButtonText.raw || "Check Answers");
+    const incorrectMessage = context.parameters.IncorrectMessage.raw === "val" ? "Incorrect" : (context.parameters.IncorrectMessage.raw || "Incorrect");
+    const congratulationsMessage = context.parameters.CongratulationsMessage.raw === "val" ? "Congratulations" : (context.parameters.CongratulationsMessage.raw || "Congratulations");
 
-    if (wordsListValue !== this._previousWordsListValue) {
-      this._previousWordsListValue = wordsListValue;
+    if (elementsListValue !== this._previouselementsListValue) {
+      this._previouselementsListValue = elementsListValue;
 
       try {
-          this._wordsListArray = JSON.parse(wordsListValue);
-          if (!Array.isArray(this._wordsListArray) || !this._wordsListArray.every(item => Array.isArray(item) && item.length === 2)) {
-              console.error("Le format de WordsList est invalide");
-              this._wordsListArray = [];
+          this._elementsListArray = JSON.parse(elementsListValue);
+          if (!Array.isArray(this._elementsListArray) || !this._elementsListArray.every(item => Array.isArray(item) && item.length === 2)) {
+              console.error("Le format de elementsList est invalide");
+              this._elementsListArray = [];
           }
       } catch (error) {
-          console.error("Erreur lors du parsing de WordsList:", error);
-          this._wordsListArray = [];
+          console.error("Erreur lors du parsing de elementsList:", error);
+          this._elementsListArray = [];
       }
     } 
       this.applyCustomStyles(customStylesValue);
       return React.createElement(DragAndDrop, {
-        wordsList: this._wordsListArray,
+        elementsList: this._elementsListArray,
         allocatedWidth: context.mode.allocatedWidth,
         allocatedHeight: context.mode.allocatedHeight,
         EnableFinalCheck: Boolean(context.parameters.EnableFinalCheck.raw),
         setNbWrongAnswersOutput: this.setWrongAnswersOutput,
         undoButtonText: undoButtonText,
-        verifyButtonText: verifyButtonText
+        verifyButtonText: verifyButtonText,
+        incorrectMessage: incorrectMessage,
+        congratulationsMessage: congratulationsMessage
       });
     }
 
@@ -70,12 +74,12 @@ export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IO
       head.appendChild(style);
       this._customStyleElement = style;
     }
-    console.log(this._customStyleElement)
+    // console.log(this._customStyleElement)
     // Clear existing rules
     while (this._customStyleElement.sheet?.cssRules.length) {
       this._customStyleElement.sheet.deleteRule(0);
     }
-    console.log(this._customStyleElement)
+    // console.log(this._customStyleElement)
     // Split the custom styles by rule and insert each one
     const rules = customStyles.split('}').map(rule => rule.trim() + '}').filter(rule => {
       // Ensure the rule is not empty and contains both a selector and a declaration
@@ -83,18 +87,18 @@ export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IO
     });
 
     rules.forEach(rule => {
-      console.log(this._customStyleElement)
+      // console.log(this._customStyleElement)
       try {
         if (this._customStyleElement && this._customStyleElement.sheet) {
           (this._customStyleElement.sheet as CSSStyleSheet).insertRule(rule, this._customStyleElement.sheet.cssRules.length);
-          console.log(this._customStyleElement)
+          // console.log(this._customStyleElement)
 
         } else {
           if (this._customStyleElement) {
             this._customStyleElement.appendChild(document.createTextNode(rule));
           }
         }
-        console.log(this._customStyleElement)
+        // console.log(this._customStyleElement)
       } catch (error) {
         console.error(`Failed to insert rule: ${rule}`, error);
       }
