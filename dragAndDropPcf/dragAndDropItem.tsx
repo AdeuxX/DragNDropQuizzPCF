@@ -123,7 +123,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
       window.removeEventListener('resize', updateContainerRect);
     };
   }, []);
-
+  console.log(hasVerifyButtonBeenPressed);
   return (
     <div
     id="dragAndDropContainer"
@@ -192,6 +192,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
           elementFinal={newStaticThread.elementFinal}
           rightAnswer={newStaticThread.rightAnswer}
           EnableFinalCheck={EnableFinalCheck}
+          verifyButtonPressed={hasVerifyButtonBeenPressed}
         />
       ))}
     </g>

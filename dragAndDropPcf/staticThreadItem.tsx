@@ -12,9 +12,10 @@ interface StaticThreadElementProps {
   elementFinal: string;
   rightAnswer: boolean;
   EnableFinalCheck: boolean;
+  verifyButtonPressed: boolean;
 }
 
-export function StaticThreadElement({ elementInit, elementFinal, rightAnswer, EnableFinalCheck }: StaticThreadElementProps) {
+export function StaticThreadElement({ elementInit, elementFinal, rightAnswer, EnableFinalCheck, verifyButtonPressed }: StaticThreadElementProps) {
   const elementInitRef = React.useRef<HTMLElement | null>(null);
   const elementFinalRef = React.useRef<HTMLElement | null>(null);
   const [coords, setCoords] = React.useState({ xinit: 0, yinit: 0, xfinal: 0, yfinal: 0 });
@@ -109,7 +110,7 @@ export function StaticThreadElement({ elementInit, elementFinal, rightAnswer, En
           y1={coords.yinit}
           x2={coords.xfinal}
           y2={coords.yfinal}
-          className={`thread-line ${EnableFinalCheck ? 'final-check' : rightAnswer ? 'right-answer' : 'wrong-answer'}`}
+          className={`thread-line ${(EnableFinalCheck && !verifyButtonPressed) ? 'final-check' : rightAnswer ? 'right-answer' : 'wrong-answer'}`}
       />
   );
 }

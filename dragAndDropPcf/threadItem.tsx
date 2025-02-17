@@ -55,7 +55,6 @@ export function ThreadElement({ elementInit }: ThreadElementProps) {
     };
 
     const updateInitialPosition = () => {
-        console.log("iciii")
         if (elementInit) {
             const initElem = document.getElementById(`${elementInit}Button`);
             if (initElem) {
@@ -81,7 +80,6 @@ export function ThreadElement({ elementInit }: ThreadElementProps) {
             container?.removeEventListener("scroll", updateInitialPosition);
         };
     }, []);
-    console.log("elementInit", elementInit);
     return (
         <line
             x1={initialPosition ? initialPosition.x : 0}
