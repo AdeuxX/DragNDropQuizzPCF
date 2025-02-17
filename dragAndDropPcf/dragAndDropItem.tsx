@@ -154,7 +154,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
       <div>
         { hasVerifyButtonBeenPressed?  areAllAnswersRight() ? <CongratulationsMessage congratulationMessage={congratulationsMessage} /> : <IncorrectMessage incorrectMessage={incorrectMessage} /> : null }
       </div>
-      <div className="buttons-container">
+      {!hasVerifyButtonBeenPressed && <div className="buttons-container">
         <button
           className="button-dnd"
           onClick={removeLastStaticsThreadsElementsCoords}
@@ -174,7 +174,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
             {verifyButtonText} {nbWrongAnswers}
           </button>
         )}
-      </div>
+      </div>}
 
       <svg className="svg-overlay">
     <defs>
