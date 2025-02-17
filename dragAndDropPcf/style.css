@@ -105,30 +105,30 @@
     margin: 10px 0;
     width: 90%;
     text-align: center;
-  }
-  
-  .element-display {
+    gap: 8%; /* Ajoute un espace entre les éléments */
+}
+
+.element-display {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     font-size: 1.2em;
-  }
-  
-  .element-display.left {
-    text-align: left;
-  }
-  
-  .element-display.right {
-    text-align: right;
-  }
-  
-  .image-element {
-    width: 50%; 
-    /* height: 100%; Prend toute la hauteur disponible */
-    object-fit: contain; /* Conserve les proportions de l'image */
 }
 
+.element-display.left {
+    text-align: left;
+}
+
+.element-display.right {
+    text-align: right;
+}
+
+.image-element {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
   .congratulations-title{
     color:green;
