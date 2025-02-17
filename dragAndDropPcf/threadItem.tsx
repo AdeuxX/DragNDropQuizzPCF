@@ -45,14 +45,14 @@ export function ThreadElement() {
     }, []);
     return (
         <line
-            // x1={initialPosition.current ? initialPosition.current.x : 0}
-            // y1={initialPosition.current ? initialPosition.current.y : 0}
-            // x2={mousePosition.x}
-            // y2={mousePosition.y}
-            x1={initialPosition.current ? initialPosition.current.x + 30 : 0}
-            y1={initialPosition.current ? initialPosition.current.y + 70 : 0}
-            x2={mousePosition.x + 30}
-            y2={mousePosition.y + 70}
+            x1={initialPosition.current ? initialPosition.current.x : 0}
+            y1={initialPosition.current ? initialPosition.current.y : 0}
+            x2={mousePosition.x}
+            y2={mousePosition.y}
+            // x1={initialPosition.current ? initialPosition.current.x + 30 : 0}
+            // y1={initialPosition.current ? initialPosition.current.y + 70 : 0}
+            // x2={mousePosition.x + 30}
+            // y2={mousePosition.y + 70}
             className="dynamic-thread-line"
 
         />

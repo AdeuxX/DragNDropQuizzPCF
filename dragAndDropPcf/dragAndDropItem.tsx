@@ -179,7 +179,8 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
       <svg className="svg-overlay">
     <defs>
       <clipPath id="clipPathWithOffset">
-        <rect x={containerRect.left} y={containerRect.top} width={allocatedWidth} height={allocatedHeight} />
+        <rect width={allocatedWidth} height={allocatedHeight} />
+        {/* <rect x={containerRect.left} y={containerRect.top} width={allocatedWidth} height={allocatedHeight} /> */}
         </clipPath>
     </defs>
     <g clipPath="url(#clipPathWithOffset)">
