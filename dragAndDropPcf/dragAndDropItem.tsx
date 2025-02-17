@@ -184,7 +184,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
         </clipPath>
     </defs>
     <g clipPath="url(#clipPathWithOffset)">
-      {isUserDragging && <ThreadElement />}
+      {isUserDragging && <ThreadElement elementInit={elementsTracked.elementInit ? elementsTracked.elementInit:elementsTracked.elementFinal? elementsTracked.elementFinal:null}/>}
       {staticsThreadsElements.map((newStaticThread, index) => (
         <StaticThreadElement
           key={index}
