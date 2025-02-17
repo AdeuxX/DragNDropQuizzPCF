@@ -6,10 +6,11 @@
   export class DragNDrop implements ComponentFramework.StandardControl<IInputs, IOutputs> {
     private _container!: HTMLDivElement;
     private _notifyOutputChanged!: () => void;
-    private _nbWrongAnswers: number = 0; // Initialise à 0
+    private _nbWrongAnswers: number|null = null; 
     private _customStyleElement: HTMLStyleElement | null = null;
     private _previouselementsListValue: string = "";
     private _elementsListArray: string[][] = [];
+    private _allAnswersCorrect: boolean|null = null;
     constructor() {  }
 
     public init(
@@ -25,6 +26,11 @@
 
     private setWrongAnswersOutput = (nbWrongAnswers: number): void => {
       this._nbWrongAnswers = nbWrongAnswers;
+      this._notifyOutputChanged();
+    }
+
+    private setAllAnswersCorrectOutput = (allAnswersCorrect: boolean): void => {
+      this._allAnswersCorrect = allAnswersCorrect;
       this._notifyOutputChanged();
     }
 
@@ -58,6 +64,7 @@
           allocatedHeight: context.mode.allocatedHeight,
           EnableFinalCheck: Boolean(context.parameters.EnableFinalCheck.raw),
           setNbWrongAnswersOutput: this.setWrongAnswersOutput,
+          setAllAnswersCorrectOutput: this.setAllAnswersCorrectOutput,
           undoButtonText: undoButtonText,
           verifyButtonText: verifyButtonText,
           incorrectMessage: incorrectMessage,
@@ -105,7 +112,7 @@
       });
     }
     public getOutputs(): IOutputs {
-      return { nbWrongAnswers: `${this._nbWrongAnswers}` };
+      return { nbWrongAnswers: `${this._nbWrongAnswers}` , allAnswersCorrect: `${this._allAnswersCorrect}` };
     }
 
     public destroy(): void {

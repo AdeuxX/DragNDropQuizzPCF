@@ -27,7 +27,11 @@
     <property name="EnableFinalCheck" display-name-key="EnableFinalCheckKey" description-key="Enable or disable the final check of the quiz" of-type="TwoOptions" usage="input" required="false" />
     <property name="CustomStyles" display-name-key="CustomStylesKey" description-key="Enter custom CSS styles" of-type="SingleLine.Text" usage="input" required="false" />
 
-    <property name="allAnswersCorrect" display-name-key="allAnswersCorrectKey" description-key="indicates if all answers in the quiz are correct" of-type="Boolean" usage="output" required="false" />
+    <property name="allAnswersCorrect" display-name-key="allAnswersCorrectKey" description-key="indicates if all answers in the quiz are correct" of-type="Enum" usage="output" required="false">
+      <value name="true" display-name-key="TrueKey" > true </value>
+      <value name="false" display-name-key="FalseKey" > false </value>
+      <value name="null" display-name-key="NullKey" > null </value>
+    </property>
     <property name="nbWrongAnswers" display-name-key="nbWrongAnswersKey" description-key="number of wrongs answers in the quizz" of-type="SingleLine.Text" usage="output" required="false" />
 
     <!--

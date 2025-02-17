@@ -12,6 +12,7 @@ interface DragAndDropProps {
   allocatedHeight: number;
   EnableFinalCheck: boolean;
   setNbWrongAnswersOutput: (nbWrongAnswers: number) => void;
+  setAllAnswersCorrectOutput: (allAnswersCorrect: boolean) => void;
   undoButtonText: string;
   verifyButtonText: string;
   incorrectMessage: string;
@@ -29,7 +30,7 @@ interface StaticThreadElementProps {
   rightAnswer: boolean;
 }
 
-const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight, allocatedWidth, EnableFinalCheck, setNbWrongAnswersOutput: setNbWrongAnswersOutput, undoButtonText, verifyButtonText, incorrectMessage, congratulationsMessage }) => {
+const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight, allocatedWidth, EnableFinalCheck, setNbWrongAnswersOutput, setAllAnswersCorrectOutput, undoButtonText, verifyButtonText, incorrectMessage, congratulationsMessage }) => {
   const [isUserDragging, setIsUserDragging] = React.useState<boolean>(false);
   const [isReleasedOnButton, setIsReleasedOnButton] = React.useState<boolean>(false);
   const [elementsTracked, setelementsTracked] = React.useState<elementsTracked>({ elementInit: null, elementFinal: null });
@@ -87,6 +88,7 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
     setNbWrongAnswers(wrongAnswersCount);
     setNbWrongAnswersOutput(wrongAnswersCount);
     setHasVerifyButtonBeenPressed(true);
+    setAllAnswersCorrectOutput(wrongAnswersCount === 0);
   }
 
   const appendelementsTracked = (word: string) => {
@@ -115,7 +117,6 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
         setContainerRect({ left: rect.left, top: rect.top });
       }
     };
-
     updateContainerRect();
     window.addEventListener('resize', updateContainerRect);
 
@@ -123,7 +124,17 @@ const DragAndDrop: React.FC<DragAndDropProps> = ({ elementsList, allocatedHeight
       window.removeEventListener('resize', updateContainerRect);
     };
   }, []);
-  console.log(hasVerifyButtonBeenPressed);
+
+  React.useEffect(() => {
+    if (!EnableFinalCheck){
+      const wrongAnswersCount = staticsThreadsElements.filter((thread) => !thread.rightAnswer).length;
+      setNbWrongAnswers(wrongAnswersCount);
+      setNbWrongAnswersOutput(wrongAnswersCount);
+      if (staticsThreadsElements.length === elementsList.length){
+        setAllAnswersCorrectOutput(wrongAnswersCount === 0);
+      }
+    }
+  },[staticsThreadsElements]);
   return (
     <div
     id="dragAndDropContainer"
