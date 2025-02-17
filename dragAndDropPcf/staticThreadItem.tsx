@@ -54,21 +54,21 @@ export function StaticThreadElement({ elementInit, elementFinal, rightAnswer, En
           const initCoords = getOffsetRelativeToAncestor(initElem);
           const finalCoords = getOffsetRelativeToAncestor(finalElem);
 
-                // const newCoords = {
-      //   xinit: initCoords.x + initElem.offsetWidth / 2 + window.scrollX,
-      //   yinit: initCoords.y + initElem.offsetHeight / 2 + window.scrollY, 
-      //   xfinal: finalCoords.x + finalElem.offsetWidth / 2 + window.scrollX,
-      //   yfinal: finalCoords.y + finalElem.offsetHeight / 2 + window.scrollX,
-      // };
-      //TODO: UNCOMMENT THIS WHEN YOU ARE TESTING OUT POWER APPS
-          const rectInit = initElem.getBoundingClientRect();
-          const rectFinal = finalElem.getBoundingClientRect();
-          const newCoords = {
-              xinit: rectInit.left + rectInit.width / 2 + window.scrollX,
-              yinit: rectInit.top + rectInit.height / 2 + window.scrollY,
-              xfinal: rectFinal.left + rectFinal.width / 2 + window.scrollX,
-              yfinal: rectFinal.top + rectFinal.height / 2 + window.scrollY,
-          };
+    const newCoords = {
+        xinit: initCoords.x + initElem.offsetWidth / 2 + window.scrollX,
+        yinit: initCoords.y + initElem.offsetHeight / 2 + window.scrollY, 
+        xfinal: finalCoords.x + finalElem.offsetWidth / 2 + window.scrollX,
+        yfinal: finalCoords.y + finalElem.offsetHeight / 2 + window.scrollX,
+      };
+
+        //   const rectInit = initElem.getBoundingClientRect();
+        //   const rectFinal = finalElem.getBoundingClientRect();
+        //   const newCoords = {
+        //       xinit: rectInit.left + rectInit.width / 2 + window.scrollX,
+        //       yinit: rectInit.top + rectInit.height / 2 + window.scrollY,
+        //       xfinal: rectFinal.left + rectFinal.width / 2 + window.scrollX,
+        //       yfinal: rectFinal.top + rectFinal.height / 2 + window.scrollY,
+        //   };
 
           setCoords((prevCoords) =>
               JSON.stringify(prevCoords) !== JSON.stringify(newCoords) ? newCoords : prevCoords
