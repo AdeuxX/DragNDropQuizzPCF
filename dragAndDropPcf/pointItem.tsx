@@ -37,8 +37,6 @@ export function PointElement({ element, setIsUserDragging, setIsReleasedOnButton
             onTouchStart={handleMouseDown}
             onTouchEnd={handleMouseUp}
             onClick={handleClick}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1976d2'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2196F3'}
             aria-label={`Select ${element.value}`}
         >
         </button>

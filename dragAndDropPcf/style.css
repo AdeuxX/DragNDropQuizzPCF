@@ -150,30 +150,34 @@
     justify-content: center;
   }
  
-.point-element {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #2196f3;
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  outline: none;
-}
+  .point-element {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #2196f3;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    outline: none;
+  }
 
-.incorrect-logo{ 
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-}
+  .point-element:hover {
+    background-color: #1976d2; /* Couleur au survol */
+  }
 
-.correct-logo{ 
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-}
+  .incorrect-logo{ 
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+
+  .correct-logo{ 
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
