@@ -3,7 +3,7 @@
 
 DragNDropQuizzPCF is a customizable drag-and-drop quiz component for PowerApps. It allows power apps developers to create interactive quizzes with complete customization options for both the words used in the quiz and the appearance through custom CSS. The component is designed to be responsive and dynamic, adapting to various screen sizes and power apps developers interactions. This quiz user to create visual associations between two words from two different lists and verify the associations.
 
-![Visuel of the empty component](https://github.com/AdeuxX/DragNDropQuizzPCF/tree/main/imagesReadme/ScreenshotEmpty.png)
+![Visuel of the empty component](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEmpty.png)
 
 # Table of Contents
 
@@ -154,9 +154,9 @@ We are actively working to improve these aspects and make the component fully ac
         
     - `EnableFinalCheck`: Choose whether to enable the final verification mode where users can check all their answers at once. When set to `true`, users must press a button to verify their answers, and they have no way of knowing if their answers are correct until they press the button. When set to `false`, the lines will immediately turn green or red depending on whether the answer is correct.
 
-    ![Enable Final Check False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/tree/main/imagesReadme/ScreenshotEnableFinalCheckFalse.png)
-    ![Enable Final Check True Button Pressed False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/tree/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedFalse.png)
-    ![Enable Final Check True Button Pressed True Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/tree/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedTrue.png)
+    ![Enable Final Check False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckFalse.png)
+    ![Enable Final Check True Button Pressed False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedFalse.png)
+    ![Enable Final Check True Button Pressed True Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedTrue.png)
 
     - **Button Text Customization**: You can also customize the text of the "Undo" and "Verify Answer" buttons to better suit your application. For example, you can change "Undo" to "Annuler" and "Verify Answer" to "Vérifier la Réponse" for a French application.
 
