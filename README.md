@@ -154,9 +154,15 @@ We are actively working to improve these aspects and make the component fully ac
         
     - `EnableFinalCheck`: Choose whether to enable the final verification mode where users can check all their answers at once. When set to `true`, users must press a button to verify their answers, and they have no way of knowing if their answers are correct until they press the button. When set to `false`, the lines will immediately turn green or red depending on whether the answer is correct.
 
-    ![Enable Final Check False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckFalse.png)
-    ![Enable Final Check True Button Pressed False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedFalse.png)
-    ![Enable Final Check True Button Pressed True Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedTrue.png)
+![Enable Final Check False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckFalse.png)
+*Caption: Example of a quiz with real-time verification (Enable Final Check = False). Answers are checked immediately.*
+
+![Enable Final Check True Button Pressed False Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedFalse.png)
+*Caption: Example of a quiz with final verification (Enable Final Check = True) before pressing the "Verify Answer" button. Answers are not yet verified.*
+
+![Enable Final Check True Button Pressed True Screenshot](https://github.com/AdeuxX/DragNDropQuizzPCF/blob/main/imagesReadme/ScreenshotEnableFinalCheckTrueButtonPressedTrue.png)
+*Caption: Example of a quiz with final verification (Enable Final Check = True) after pressing the "Verify Answer" button. Answers are now verified.*
+
 
     - **Button Text Customization**: You can also customize the text of the "Undo" and "Verify Answer" buttons to better suit your application. For example, you can change "Undo" to "Annuler" and "Verify Answer" to "Vérifier la Réponse" for a French application.
 
