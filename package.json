@@ -10,7 +10,8 @@
     "rebuild": "pcf-scripts rebuild",
     "start": "pcf-scripts start",
     "start:watch": "pcf-scripts start watch",
-    "refreshTypes": "pcf-scripts refreshTypes"
+    "refreshTypes": "pcf-scripts refreshTypes",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
     "@fluentui/react-components": "9.46.2"
@@ -27,6 +28,7 @@
     "eslint-plugin-react": "^7.37.1",
     "pcf-scripts": "^1",
     "pcf-start": "^1",
+    "prettier": "^3.5.2",
     "typescript": "^4.9.5"
   }
 }
